@@ -25,7 +25,6 @@ def all_users
   @users.each_with_index do |user, i|
     puts "#{i + 1}. #{user["id"]} #{user["first_name"]} #{user["last_name"]} #{user["phone_number"]}"
   end
-  puts
 end
 
 def single_user
@@ -49,17 +48,17 @@ end
 
 def new_user
   puts "\n=== NEW USER ==="  
-  print "First name:   "
+  print "First name: "
   first_name = gets.strip
-  print "Last name:    "
+  print "Last name:  "
   last_name = gets.strip
   print "Phone number: "
   phone_number = gets.strip
   HTTParty.post(BASE_URL, 
     :body => { 
-      :first_name => "#{first_name}", 
-      :last_name => "#{last_name}", 
-      :phone_number => "#{phone_number}" 
+      :first_name => first_name, 
+      :last_name => last_name,
+      :phone_number => phone_number,
     }.to_json,
       :headers => { 'Content-Type' => 'application/json' } 
   )
